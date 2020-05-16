@@ -214,7 +214,7 @@ export default new Vuex.Store({
   actions: {
     login({ commit }, credentials) {
       return axios
-        .post("//localhost:5000/login", credentials)
+        .post("//https://testing-azure-deploy.azurewebsites.net/login", credentials)
         .then(({ data }) => {
           commit("SET_USER_DATA", data);
         });
@@ -224,7 +224,7 @@ export default new Vuex.Store({
     },
 
     fetchEmployees(context) {
-      axios.get("http://localhost:3000/admins").then(response => {
+      axios.get("https://testing-azure-deploy.azurewebsites.net/admins").then(response => {
         let admins = response.data.admins;
         let result = admins.filter(
           employee => !context.state.ignoredEmployeeIds.includes(parseInt(employee.id))
@@ -241,7 +241,7 @@ export default new Vuex.Store({
 
     // GET country name
     fetchLocations() {
-      axios.get("http://localhost:3000/contacts")
+      axios.get("https://testing-azure-deploy.azurewebsites.net/contacts")
         .then(response => {
           let contacts = response.data.data;
           /* commented out for now but this I have to create a method to list all countries here later
@@ -260,7 +260,7 @@ export default new Vuex.Store({
 
     // Get tickets
     fetchConversations(context) {
-      axios.get("http://localhost:3000/conversations").then(response => {
+      axios.get("https://testing-azure-deploy.azurewebsites.net/conversations").then(response => {
         let conversations = response.data;
         context.commit("setConversations", conversations);
       })
