@@ -1,7 +1,7 @@
 <template> 
 <div>
-    <ShowHide v-model="showHide"/>
-    <div v-bind:style="{display: displayTickets}">
+    <!--V-show boolean for the ShowHide toggle method-->
+    <div v-show="showtickets">
         <div class="column-headers">
             <div class="column-header blue">
                 <p class="column-header__text">
@@ -42,30 +42,18 @@
 
 <script>
 import AllTicketsStats from "@/components/allTicketsStats.vue";
-import ShowHide from "@/components/ShowHide.vue";
 
 export default {
     components: {
-        ShowHide,
         AllTicketsStats,
     },
-    data() {
-        return {
-        displayTickets: "block",
-        hiddenTickets: false
-        };
-    },
-    methods: {
-    toggleShowHideTickets() {      
-        if (this.hiddenTickets) {
-            this.displayTickets = "block"
-            this.hiddenTickets = false;
-        } else {
-            this.displayTickets = "none"
-            this.hiddenTickets = true;
+
+    //Part of the ShowHide button toggle method emit
+    props: {
+        showtickets: {
+            type: Boolean,
         }
-    }
-}
+    },
 }
 </script>
 

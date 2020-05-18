@@ -4,7 +4,7 @@
 
     <div class="btn">31-12-2019</div>
 
-  <div class="btn noselect" v-on:click="toggleShowHideButtonText">{{ message }}</div>
+  <div class="btn noselect" @click="toggleShowHideButtonText">{{ message }}</div>
   </div>
 </template>
 
@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       message: "❌ Hide tickets",
-      hidden: false
     };
   },
   methods: {
@@ -24,7 +23,10 @@ export default {
       } else {
           this.message = "✔️ Show tickets"
       }
-      this.hidden = !this.hidden
+      this.hidden = !this.hidden;
+
+      //ShowHide button toggle method emit
+      this.$emit('toggle', { show: !this.hidden });
     }
   },
 }

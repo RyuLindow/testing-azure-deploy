@@ -4,8 +4,13 @@
       <div class="page__container">
         <FilterBox />
         <MainData />
-        <ShowHide />
-        <DailyTicketsStats />
+        <!--Listens for toggleShowHide method and triggers it-->
+        <ShowHide
+          @toggle="toggleShowHide">
+        </ShowHide>
+        <DailyTicketsStats
+          :showtickets="showTickets">
+        </DailyTicketsStats>
       </div>
     </template>
   </div>
@@ -26,12 +31,25 @@ export default {
     MainData,
     ShowHide
   },
+  	
+  data() {
+    return {
+      isLoading: false,
+      showTickets: true,
+    };
+  },
+
   created() {
-    axios.get("//https://testing-azure-deploy.azurewebsites.net:3000/home").then(({ data }) => {
+    axios.get("//localhost:3000/home").then(({ data }) => {
       this.home = data.home.home;
       this.isLoading = false;
     });
+  },
+    //Part of the ShowHide button toggle method emit
+    methods: {
+      toggleShowHide(event) {
+        this.showTickets = event.show;
+    }
   }
 };
 </script>
-
