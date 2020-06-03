@@ -35,12 +35,14 @@ jobs:
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8a4341e0e34748c58a07e54266a615ed }}
         package: .
 
-    - name: delete old files
-      run: |
-        cd umbraco-project
-        del /s index.html
-        cd dist
-        del /s css
-        del /s fonts
-        del /s img
-        del /s js
+      steps:
+      - task: DeleteFiles@1
+        displayName: 'Remove unneeded files'
+        inputs:
+          contents: |
+          cd umbraco-project
+            index*
+            **/css/*
+            **/fonts/*
+            **/img/*
+            **/js/*
