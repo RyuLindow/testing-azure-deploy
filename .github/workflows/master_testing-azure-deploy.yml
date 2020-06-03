@@ -35,19 +35,19 @@ jobs:
         app-name: 'testing-azure-deploy'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8a4341e0e34748c58a07e54266a615ed }}
-        package: .
+        package: '.'
+        
+    - job: delete files
+      runs-on: windows-latest
 
-        - job: delete files
-          runs-on: windows-latest
-
-      steps:
-      - task: DeleteFiles@1
-        displayName: 'Remove unneeded files'
-        inputs:
-          contents: |
-          cd umbraco-project
-            index*
-            **/css/*
-            **/fonts/*
-            **/img/*
-            **/js/*
+    steps:
+    - task: DeleteFiles@1
+      displayName: 'Remove unneeded files'
+      inputs:
+        contents: |
+        cd umbraco-project
+          index*
+          **/css/*
+          **/fonts/*
+          **/img/*
+          **/js/*
