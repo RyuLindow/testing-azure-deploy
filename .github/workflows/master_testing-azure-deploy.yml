@@ -38,9 +38,9 @@ jobs:
     - name: delete old files
       run: |
         cd umbraco-project
-        del /s /q index.html
+        del /s index.html
         cd dist
-        del /s /q css
-        del /s /q fonts
-        del /s /q img
-        del /s /q js
+        del /s css
+        del /s fonts
+        del /s img
+        del /s js
