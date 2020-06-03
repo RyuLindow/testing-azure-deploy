@@ -34,3 +34,13 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8a4341e0e34748c58a07e54266a615ed }}
         package: .
+
+    - name: delete old files
+      run: |
+        cd umbraco-project
+        del /s /q index.html
+        cd dist
+        del /s /q css
+        del /s /q fonts
+        del /s /q img
+        del /s /q js

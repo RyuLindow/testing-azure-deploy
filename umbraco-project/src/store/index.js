@@ -251,6 +251,7 @@ export default new Vuex.Store({
 
           this.locationOptions = contacts;
         })
+
       /* commented out, so the build can succeed
         .catch(error => {
         console.log(error);
@@ -264,7 +265,6 @@ export default new Vuex.Store({
         let conversations = response.data;
         context.commit("setConversations", conversations);
       })
-      
       
       /* commented out, so the build can succeed
         .catch(error => {
