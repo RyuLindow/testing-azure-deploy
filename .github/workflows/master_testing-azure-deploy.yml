@@ -9,23 +9,13 @@ on:
       - master
 
 jobs:
+
+- job : build and deploy
   build-and-deploy:
     runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@master
-
-    steps:
-    - task: DeleteFiles@1
-      displayName: 'Remove unneeded files'
-      inputs:
-        contents: |
-        cd umbraco-project
-          index*
-          **/css/*
-          **/fonts/*
-          **/img/*
-          **/js/*
 
     - name: Set up Node.js version
       uses: actions/setup-node@v1
@@ -46,3 +36,18 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8a4341e0e34748c58a07e54266a615ed }}
         package: .
+
+        - job: delete files
+          runs-on: windows-latest
+
+      steps:
+      - task: DeleteFiles@1
+        displayName: 'Remove unneeded files'
+        inputs:
+          contents: |
+          cd umbraco-project
+            index*
+            **/css/*
+            **/fonts/*
+            **/img/*
+            **/js/*
