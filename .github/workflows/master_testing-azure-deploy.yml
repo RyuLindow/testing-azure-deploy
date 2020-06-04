@@ -45,7 +45,6 @@ jobs:
       displayName: 'Remove unneeded files'
       inputs:
         contents: |
-        cd umbraco-project
           index*
           **/css/*
           **/fonts/*
