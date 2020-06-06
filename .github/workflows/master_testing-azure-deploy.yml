@@ -9,8 +9,6 @@ on:
       - master
 
 jobs:
-
-- job : build and deploy
   build-and-deploy:
     runs-on: windows-latest
 
@@ -37,7 +35,8 @@ jobs:
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8a4341e0e34748c58a07e54266a615ed }}
         package: '.'
         
-    - job: delete files
+    delete-files: 
+      needs: build-and-deploy
       runs-on: windows-latest
 
     steps:
