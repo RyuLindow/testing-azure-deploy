@@ -27,7 +27,7 @@ export default {
     ShowHide
   },
   created() {
-    axios.get("//https://testing-azure-deploy.azurewebsites.net:3000/home").then(({ data }) => {
+    axios.get("//https://node-intercom.azurewebsites.net/home").then(({ data }) => {
       this.home = data.home.home;
       this.isLoading = false;
     });
